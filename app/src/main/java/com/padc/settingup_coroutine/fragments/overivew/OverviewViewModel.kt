@@ -1,4 +1,6 @@
 package com.padc.settingup_coroutine.fragments.overivew
 
-class OverviewViewModel {
+import androidx.lifecycle.ViewModel
+
+class OverviewViewModel : ViewModel() {
 }
