@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.padc.settingup_coroutine.R
+import com.padc.settingup_coroutine.adapters.PhotoGridAdapter
+import com.padc.settingup_coroutine.databinding.FragmentOverviewBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,9 @@ class OverviewFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val mViewModel : OverviewViewModel by lazy {
+        ViewModelProvider(this).get(OverviewViewModel::class.java)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +41,12 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_overview, container, false)
+       val binding = FragmentOverviewBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = mViewModel
+        binding.photosGrid.adapter = PhotoGridAdapter()
+        setHasOptionsMenu(true)
+        return binding.root
     }
 
     companion object {
