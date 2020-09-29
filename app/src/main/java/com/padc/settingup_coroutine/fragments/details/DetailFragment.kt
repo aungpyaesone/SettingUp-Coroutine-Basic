@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.padc.settingup_coroutine.R
+import com.padc.settingup_coroutine.databinding.FragmentDetailBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +31,18 @@ class DetailFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        val application = activity?.let {
+            it.application
+        }
+        val binding = FragmentDetailBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        return binding.root
     }
 
     companion object {
