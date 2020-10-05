@@ -10,7 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.padc.settingup_coroutine.R
 import com.padc.settingup_coroutine.data.vos.MarsProperty
 import com.padc.settingup_coroutine.fragments.overivew.MarApiStatus
-import com.padc.settingup_coroutine.network.MarsApi
 
 @BindingAdapter("listData")
 fun bindRecylerView(recyclerView: RecyclerView, data: List<MarsProperty>?){
@@ -19,15 +18,18 @@ fun bindRecylerView(recyclerView: RecyclerView, data: List<MarsProperty>?){
 }
 
 @BindingAdapter("imageUrl")
-fun bindImage(imageView: ImageView, imgUrl : String){
-    imgUrl?.let{
+fun bindImage(imageView: ImageView, imgUrl : String) {
+    imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imageView.context)
             .load(imgUri)
-            .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground))
+            .apply(
+                RequestOptions().placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_foreground)
+            )
             .into(imageView)
     }
+}
 
     @BindingAdapter("marsApiStatus")
     fun bindStatus(statusImage:ImageView,status:MarApiStatus?){
@@ -47,6 +49,3 @@ fun bindImage(imageView: ImageView, imgUrl : String){
         }
 
     }
-
-
-}

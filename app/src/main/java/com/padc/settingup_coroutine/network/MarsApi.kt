@@ -6,14 +6,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object MarsApi {
-    private const val BASE_URL ="https://android-kotlin-fun-mars-server.appspot.com"
+    private const val BASE_URL ="https://android-kotlin-fun-mars-server.appspot.com/"
 
     private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
         .build()
     val retrofitService : MarsApiService by lazy {
