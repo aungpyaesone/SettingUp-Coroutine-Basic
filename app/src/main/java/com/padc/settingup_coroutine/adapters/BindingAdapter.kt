@@ -9,7 +9,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.padc.settingup_coroutine.R
 import com.padc.settingup_coroutine.data.vos.MarsProperty
-import com.padc.settingup_coroutine.fragments.overivew.MarApiStatus
+import com.padc.settingup_coroutine.fragments.overivew.MarsApiStatus
+
 
 @BindingAdapter("listData")
 fun bindRecylerView(recyclerView: RecyclerView, data: List<MarsProperty>?){
@@ -32,20 +33,21 @@ fun bindImage(imageView: ImageView, imgUrl : String) {
 }
 
     @BindingAdapter("marsApiStatus")
-    fun bindStatus(statusImage:ImageView,status:MarApiStatus?){
+    fun bindStatus(statusImage:ImageView,status:MarsApiStatus?){
         when(status){
-            MarApiStatus.LOADING ->{
+            MarsApiStatus.LOADING ->{
                 statusImage.visibility = View.VISIBLE
                 statusImage.setImageResource(R.mipmap.ic_launcher)
             }
-            MarApiStatus.ERROR ->{
+            MarsApiStatus.ERROR ->{
                 statusImage.visibility = View.VISIBLE
                 statusImage.setImageResource(R.mipmap.ic_launcher)
 
             }
-            MarApiStatus.DONE ->{
+            MarsApiStatus.DONE ->{
                 statusImage.visibility = View.GONE
             }
         }
 
     }
+
